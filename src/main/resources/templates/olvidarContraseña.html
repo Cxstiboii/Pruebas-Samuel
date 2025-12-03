@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html class="dark" lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OinkCoin - Recuperar Contraseña</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/olvidarContraseña.css}">
+</head>
+<body class="dark">
+    <div class="recovery-container">
+        <div class="recovery-content">
+            <div class="logo-section">
+                <div class="logo-container">
+                    <div class="logo-image">
+                        <span class="material-symbols-outlined">savings</span>
+                    </div>
+                </div>
+                <p class="logo-text">OinkCoin</p>
+            </div>
+
+            <div class="form-card">
+                <div class="form-content">
+                    
+                    <!-- ✅ MOSTRAR MENSAJES -->
+                    <div th:if="${mensaje}" 
+                         th:class="${tipoMensaje == 'success' ? 'alert alert-success' : 'alert alert-error'}" 
+                         th:text="${mensaje}">
+                    </div>
+                    
+                    <div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
+
+                    <div class="form-header">
+                        <p class="form-title">¿Olvidaste tu contraseña?</p>
+                        <p class="form-subtitle">Introduce tu correo y te enviaremos un enlace para restablecerla.</p>
+                    </div>
+
+                    <!-- ✅ FORMULARIO CORREGIDO -->
+                    <form th:action="@{/login/olvidarContraseña}" method="post">
+                        <div class="form-fields">
+                            <div class="input-container">
+                                <label class="input-label" for="email">Correo electrónico</label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon material-symbols-outlined">mail</span>
+                                    <input class="form-input" 
+                                           id="email" 
+                                           name="email"
+                                           type="email" 
+                                           placeholder="ejemplo@correo.com" 
+                                           required>
+                                </div>
+                            </div>
+
+                            <button class="submit-button" type="submit">
+                                <span>Enviar Enlace de Recuperación</span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <p class="back-link">
+                        ¿Recuerdas tu contraseña? <a th:href="@{/login}">Inicia sesión</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

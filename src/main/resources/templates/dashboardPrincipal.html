@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Principal - OinkCoin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" th:href="@{/css/dashboardPrincipal.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    
+        
+</head>
+<body>
+    <!-- Nav para Mobile -->
+    <nav class="mobile-navbar">
+        <a href="#menu"><span class="material-symbols-outlined">menu</span></a>
+        <h3 class="tittle">Dashboard</h3>
+        <a href="#"><span class="material-symbols-outlined">savings</span></a>
+    </nav>
+
+    <!-- Menu lateral mobile -->
+    <section id="menu" class="mobile-menu">
+        <div class="menu-overlay"></div>
+        <div class="menu-content">
+            <div class="menu-header">
+                <a href="#" class="menu-close">
+                    <span class="material-symbols-outlined">close</span>
+                </a>
+                <h3>OinkCoin</h3>
+            </div>
+
+            <div class="menu-items">
+                <a href="#" class="nav-item active">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="material-symbols-outlined">add_circle</span>
+                    <span>Añadir ingreso</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="material-symbols-outlined">do_not_disturb_on</span>
+                    <span>Añadir gasto</span>
+                </a>
+            </div>
+
+            <div class="nav-footer">
+                <a th:href="@{/configuracionPrincipal}" class="nav-item">
+                    <span class="material-symbols-outlined">settings</span>
+                    <span>Configuración</span>
+                </a>
+                <a th:href="@{/logout}" class="nav-item">
+                    <span class="material-symbols-outlined">logout</span>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nav para Desktop -->
+    <div class="desktop-layout">
+        <nav class="desktop-navbar">
+            <div class="nav-header">
+                <div class="nav-logo">
+                    <span class="material-symbols-outlined">savings</span>
+                    <p>OinkCoin</p>
+                </div>
+            </div>
+
+            <!-- Menu lateral para desktop -->
+            <div class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="material-symbols-outlined">add_circle</span>
+                    <span>Añadir ingreso</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="material-symbols-outlined">do_not_disturb_on</span>
+                    <span>Añadir gasto</span>
+                </a>
+            </div>
+
+            <div class="nav-footer">
+                <a th:href="@{/configuracionPrincipal}" class="nav-item">
+                    <span class="material-symbols-outlined">settings</span>
+                    <span>Configuración</span>
+                </a>
+                <a th:href="@{/logout}" class="nav-item" onclick="return confirm('¿Estás seguro de que deseas cerrar sesión?')">
+                    <span class="material-symbols-outlined">logout</span>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <!-- Mostrar mensajes de éxito -->
+        <div th:if="${mensaje}" class="alert alert-success" th:text="${mensaje}"></div>
+        
+        <!-- Encabezado de saludo con datos del usuario -->
+        <header class="greetings-section">
+            <h1 th:text="'Hola, ' + ${nombreUsuario} + '!'">Hola, Usuario!</h1>
+            <p>Este es tu balance actual</p>
+        </header>
+        
+        <!-- Mostrar Ingresos y Gastos Totales -->
+        <section class="stats">
+            <div class="info-stats">
+                <p>Balance Total Actual</p>
+                <p>$45.000</p>
+            </div>
+            <div class="info-stats">
+                <p>Ingresos Totales</p>
+                <p>$5.000</p>
+            </div>
+            <div class="info-stats">
+                <p>Gastos Totales</p>
+                <p>$5.000</p>
+            </div>
+        </section>
+        
+        <!-- Botones de Ingreso y Gasto -->
+        <div class="buttons-sections">
+            <button>Añadir Ingreso</button>
+            <button>Añadir Gasto</button> 
+        </div>
+
+        <!-- Seccion de charts -->
+        <div class="grid-charts">
+            <!-- Line Chart -->
+            <section class="balance-chart">
+                <header class="balance-header">
+                    <h2>Tendencia del balance</h2>
+                    <div>
+                        <button class="active">Sem</button>
+                        <button>Mes</button>
+                        <button>Año</button>
+                    </div>
+                </header>
+
+                <div class="summary">
+                    <h2>$2.850</h2>
+                    <p>Ultimos 3 dias <span>+5.2%</span></p>
+                </div>
+                
+                <canvas id="miGrafico"></canvas>
+            </section>
+
+            <!-- Pie Chart -->
+            <section class="balance-chart">
+                <header class="balance-header">
+                    <h2>Gastos por categoría</h2>
+                    <div>
+                        <button class="active">Sem</button>
+                        <button>Mes</button>
+                        <button>Año</button>
+                    </div>
+                </header>
+
+                <div class="summary">
+                    <h2>$2.850</h2>
+                    <p>Ultimos 3 dias <span>+5.2%</span></p>
+                </div>
+                <canvas id="myChart"></canvas>
+            </section>
+        </div>
+
+        <section class="history-section">
+            <header class="history-header">
+                <h2>Movimientos Recientes</h2>
+                <a href="">Ver Todo</a>
+            </header>
+
+            <nav class="nav-history">
+                <button class="active">Todos</button>
+                <button>Ingresos</button>
+                <button>Gastos</button>
+            </nav>
+
+            <section class="article-history">
+                <article>
+                    <div><span class="material-symbols-outlined">grocery</span></div>
+                    <div>
+                        <h3>Supermercado</h3>
+                        <p>Compras</p>
+                    </div>
+                    <div>
+                        <h3>$ -85.000</h3>
+                        <p>Hoy</p>
+                    </div>
+                </article>
+
+                <article>
+                    <div><span class="material-symbols-outlined">payments</span></div>
+                    <div>
+                        <h3>Salario Mensual</h3>
+                        <p>Salario</p>
+                    </div>
+                    <div>
+                        <h3>$ +2.500.000</h3>
+                        <p>Ayer</p>
+                    </div>
+                </article>
+
+                <article>
+                    <div><span class="material-symbols-outlined">dining</span></div>
+                    <div>
+                        <h3>Cena con amigos</h3>
+                        <p>Comida</p>
+                    </div>
+                    <div>
+                        <h3>$ -42.000</h3>
+                        <p>Ayer</p>
+                    </div>
+                </article>
+
+                <article>
+                    <div><span class="material-symbols-outlined">local_gas_station</span></div>
+                    <div>
+                        <h3>Gasolina</h3>
+                        <p>Transporte</p>
+                    </div>
+                    <div>
+                        <h3>$ -12.000</h3>
+                        <p>Hace 3 dias</p>
+                    </div>
+                </article>
+            </section>
+        </section>
+    </main>
+    
+    <script>
+        // Line Chart
+        const labels = ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4'];
+        const data = [1000, 2000, 1500, 2500];
+
+        new Chart(document.getElementById('miGrafico'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Balance Semanal',
+                    data: data,
+                    borderColor: '#3EBD93',
+                    backgroundColor: 'rgba(62, 189, 147, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.05)'
+                        },
+                        ticks: {
+                            color: '#A0AEC0'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.05)'
+                        },
+                        ticks: {
+                            color: '#A0AEC0'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Pie Chart
+        const ctx = document.getElementById('myChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Comida', 'Transporte', 'Entretenimiento', 'Ropa', 'Facturas', 'Otros'],
+                datasets: [{
+                    data: [1200, 750, 450, 300, 600, 150],
+                    backgroundColor: [
+                        '#FF6B6B',
+                        '#4ECDC4',
+                        '#45B7D1', 
+                        '#96CEB4',
+                        '#FFEAA7',
+                        '#DDA0DD'
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#1f2b28'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: '#A0AEC0',
+                            padding: 15,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Auto-ocultar alertas después de 5 segundos
+        setTimeout(() => {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                alert.style.opacity = '0';
+                alert.style.transform = 'translateY(-10px)';
+                setTimeout(() => alert.remove(), 300);
+            });
+        }, 5000);
+
+        // Prevenir navegación con botones del navegador después del logout
+        window.history.pushState(null, "", window.location.href);
+        window.onpopstate = function() {
+            window.history.pushState(null, "", window.location.href);
+        };
+        
+        // Deshabilitar el caché para esta página
+        window.onload = function() {
+            if (performance.navigation.type === 2) {
+                // La página fue accedida desde el caché (botón de retroceso)
+                window.location.href = '/login';
+            }
+        };
+        
+        // Prevenir que se guarde el estado de la página
+        window.addEventListener('beforeunload', function() {
+            // Limpiar el estado antes de salir
+            sessionStorage.clear();
+        });
+    </script>
+</body>
+</html>

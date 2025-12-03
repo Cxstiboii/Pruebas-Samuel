@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <html xmlns:th="http://www.thymeleaf.org"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>OinkCoin - Iniciar Sesión</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../../../../../OinkCoin/login.css"/>
+    <link rel = "stylesheet" th:href="@{css/index.css}">
+</head>
+
+<body>
+<div class="layout-container">
+    <div class="px-4 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
+        <div class="layout-content-container">
+            <header>
+                <div class="logo-container">
+                    <div class="logo-icon">
+                        <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+                        </svg>
+                    </div>
+                    <h2 class="logo-text">OinkCoin</h2>
+                </div>
+                <nav class="desktop-nav">
+                    <div class="nav-links">
+                        <a class="nav-link" href="#">Características</a>
+                        <a class="nav-link" href="#">FAQ</a>
+                        <a class="nav-link" href="login">Iniciar Sesión</a>
+                    </div>
+                    <a href="register" class = "btn-primary">Regístrate Gratis</a>
+                </nav>
+                <div class="mobile-menu">
+                    <button class="mobile-menu-btn">
+                        <span class="material-symbols-outlined text-3xl">menu</span>
+                    </button>
+                </div>
+            </header>
+
+            <main>
+                <section class="hero-section">
+                    <div class="hero-container">
+                        <div class="hero-content">
+                            <div class="hero-image" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDoV8cAVep-YlnDbuZ0mfoP3KVeuhah3fStpiUo-Jnc7zb6kodXGh8BkjaE4nyUkbnIwIJ1JrzgzMGIggwoDAMIPlTFAg0r5gpm1VdBAcJC8xqmmfsHDQ4JYnDT4XQXRvm933UuWme_-yECUuggHwZkI4B4cCdQqe2o-Y8nGyhzl9KEY_Gp6y4zznD8XzbRAdfq9fYp4MGlqcqruUa4yKXzahxCEowm-OZ1Eu6KvyJPbAntFFqhHEUKBLKMBZ5YyJDePCdtLSkYe-8');"></div>
+                            <div class="hero-text">
+                                <div class="hero-text-content">
+                                    <h1 class="hero-title">Toma el control de tus finanzas con OinkCoin</h1>
+                                    <h2 class="hero-subtitle">La forma más sencilla de registrar tus gastos, crear presupuestos y alcanzar tus metas financieras.</h2>
+                                </div>
+                                <a href="" class = "btn-hero">Empezar Ahora - Es Gratis</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="features-section">
+                    <div class="features-container">
+                        <div class="features-header">
+                            <h2 class="features-subtitle">¿Por qué OinkCoin?</h2>
+                            <h1 class="features-title">Todo lo que necesitas para una gestión financiera inteligente</h1>
+                            <p class="features-description">OinkCoin te proporciona herramientas poderosas en una interfaz simple para que puedas concentrarte en lo que realmente importa: tus metas.</p>
+                        </div>
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <span class="material-symbols-outlined text-3xl">receipt_long</span>
+                                </div>
+                                <div class="feature-content">
+                                    <h3 class="feature-title">Registro Rápido de Gastos</h3>
+                                    <p class="feature-description">Añade tus gastos en segundos, estés donde estés.</p>
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <span class="material-symbols-outlined text-3xl">bar_chart</span>
+                                </div>
+                                <div class="feature-content">
+                                    <h3 class="feature-title">Gráficos y Análisis Intuitivos</h3>
+                                    <p class="feature-description">Visualiza a dónde va tu dinero con reportes claros y fáciles de entender.</p>
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <span class="material-symbols-outlined text-3xl">track_changes</span>
+                                </div>
+                                <div class="feature-content">
+                                    <h3 class="feature-title">Presupuestos Personalizados</h3>
+                                    <p class="feature-description">Establece límites de gasto mensuales o por categoría para no desviarte de tus objetivos.</p>
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <span class="material-symbols-outlined text-3xl">devices</span>
+                                </div>
+                                <div class="feature-content">
+                                    <h3 class="feature-title">Sincronización Multiplataforma</h3>
+                                    <p class="feature-description">Accede a tu información financiera desde cualquier dispositivo, en cualquier momento.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="faq-section">
+                    <h2 class="faq-title">Preguntas Frecuentes</h2>
+                    <div class="faq-container">
+                        <details class="faq-item">
+                            <summary class="faq-summary">
+                                ¿Es seguro OinkCoin?
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                            </summary>
+                            <p class="faq-answer">
+                                Totalmente. Utilizamos encriptación de extremo a extremo y las mejores prácticas de seguridad para proteger tus datos financieros. Tu privacidad y seguridad son nuestra máxima prioridad.
+                            </p>
+                        </details>
+                        <details class="faq-item">
+                            <summary class="faq-summary">
+                                ¿OinkCoin tiene algún costo?
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                            </summary>
+                            <p class="faq-answer">
+                                OinkCoin ofrece un plan gratuito con todas las funciones esenciales para la gestión de tus finanzas personales. También contamos con un plan Premium opcional con características avanzadas como informes detallados y presupuestos ilimitados.
+                            </p>
+                        </details>
+                        <details class="faq-item">
+                            <summary class="faq-summary">
+                                ¿Puedo usar OinkCoin en mi teléfono y computadora?
+                                <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                            </summary>
+                            <p class="faq-answer">
+                                ¡Sí! OinkCoin está diseñado para funcionar perfectamente en todos tus dispositivos. Tus datos se sincronizan en tiempo real para que siempre tengas la información más actualizada, ya sea que estés en tu móvil, tableta o computadora de escritorio.
+                            </p>
+                        </details>
+                    </div>
+                </section>
+            </main>
+
+            <footer>
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <div class="footer-logo-icon">
+                                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+                                </svg>
+                            </div>
+                            <h3 class="footer-logo-text">OinkCoin</h3>
+                        </div>
+                        <p class="footer-copyright">© 2024 OinkCoin. Todos los derechos reservados.</p>
+                    </div>
+                    <div class="footer-links">
+                        <a class="footer-link" href="#">Términos</a>
+                        <a class="footer-link" href="#">Privacidad</a>
+                        <a class="footer-link" href="#">Contacto</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html class = "dark" lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>OinkCoin - Iniciar Sesión</title>
+    
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/login.css}"/>
+</head>
+<body>
+    <div class="login-container">
+        <div class="background-grid">
+            <div class="background-effects"></div>
+        </div>
+        <div class="layout-container">
+            <div class="login-card">
+                <div class="side-panel">
+                    <div class="side-panel-content">
+                        <div class="logo-container">
+                            <span class="material-symbols-outlined logo-icon">savings</span>
+                        </div>
+                        <h1>OinkCoin</h1>
+                        <p>Tu alcancía digital, siempre a tu lado.</p>
+                    </div>
+                    <div class="side-panel-circle-1"></div>
+                    <div class="side-panel-circle-2"></div>
+                </div>
+                <div class="form-panel">
+                    <div class="mobile-logo">
+                        <span class="material-symbols-outlined mobile-logo-icon">savings</span>
+                        <h1>OinkCoin</h1>
+                    </div>
+
+                    <!-- Mensajes de éxito y error mejorados -->
+                    <div th:if="${mensaje}" 
+                            th:class="${tipoMensaje == 'success' ? 'alert alert-success' : 'alert alert-error'}" 
+                            th:text="${mensaje}">
+                    </div>
+                    <div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
+
+                    <div class="form-header">
+                        <h1>Bienvenido de vuelta</h1>
+                        <p>Controla tus finanzas con un solo clic</p>
+                    </div>
+                    
+                    <!--Formulario de Login-->
+                    <form class="login-form" th:action="@{/login}" method="post">
+                        <label class="form-label">
+                            <p>Correo Electrónico</p>
+                            <div class="input-group">
+                                <span class="material-symbols-outlined input-icon">mail</span>
+                                <input class="form-input" name="email" placeholder="tu@email.com" type="email" required/>
+                            </div>
+                        </label>
+                        <label class="form-label">
+                            <p>Contraseña</p>
+                            <div class="input-group">
+                                <span class="material-symbols-outlined input-icon">lock</span>
+                                <input class="form-input" name="password" placeholder="Introduce tu contraseña" type="password" required/>
+                            </div>
+                            <a class="forgot-password" th:href="@{/login/olvidarContraseña}">¿Olvidaste tu contraseña?</a>
+                        </label>
+                        <button class="submit-button" type="submit">Iniciar Sesión</button>
+                    </form>
+                    
+                    <!-- ENLACE CORREGIDO -->
+                    <div class="register-link">
+                        <p>¿No tienes una cuenta? <a th:href="@{/registro}">Regístrate</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

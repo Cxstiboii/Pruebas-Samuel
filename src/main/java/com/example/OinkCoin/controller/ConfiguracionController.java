@@ -15,24 +15,20 @@ import com.example.OinkCoin.service.UsuarioService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/configuracionPrincipal")
+@RequestMapping("/configuracion") 
 public class ConfiguracionController {
 
     @Autowired
     private UsuarioService usuarioService;
 
-    // CORREGIDO: Añadir la anotación @GetMapping
     @GetMapping
     public String mostrarConfiguracion(HttpSession session, Model model) {
-        // Verificar si hay una sesión válida
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
         
-        // Si no hay usuario, redirigir al login
         if (usuario == null) {
             return "redirect:/login";
         }
         
-        // Pasar todos los datos del usuario al modelo
         model.addAttribute("usuario", usuario);
         model.addAttribute("nombreUsuario", usuario.getNombreUsuario());
         model.addAttribute("emailUsuario", usuario.getEmailUsuario());
@@ -56,11 +52,9 @@ public class ConfiguracionController {
                 return "redirect:/login";
             }
             
-            // Actualizar el nombre del usuario
             usuario.setNombreUsuario(nombreUsuario);
             usuarioService.guardar(usuario);
             
-            // Actualizar la sesión
             session.setAttribute("usuarioLogueado", usuario);
             session.setAttribute("nombreUsuario", nombreUsuario);
             
@@ -73,7 +67,7 @@ public class ConfiguracionController {
                 "❌ Error al actualizar el perfil: " + e.getMessage());
         }
         
-        return "redirect:/configuracion";
+        return "redirect:/configuracion"; // ✅ CAMBIADO
     }
 
     @PostMapping("/eliminar-cuenta")
@@ -88,14 +82,10 @@ public class ConfiguracionController {
                 return "redirect:/login";
             }
             
-            // Obtener el nombre antes de eliminar
             String nombreUsuario = usuario.getNombreUsuario();
             Integer idUsuario = usuario.getIdUsuario();
             
-            // Eliminar el usuario
             usuarioService.eliminarUsuario(idUsuario);
-            
-            // Invalidar la sesión
             session.invalidate();
             
             redirectAttributes.addFlashAttribute("mensaje", 
@@ -107,7 +97,7 @@ public class ConfiguracionController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", 
                 "❌ Error al eliminar la cuenta: " + e.getMessage());
-            return "redirect:/configuracion";
+            return "redirect:/configuracion"; // ✅ CAMBIADO
         }
     }
 }
